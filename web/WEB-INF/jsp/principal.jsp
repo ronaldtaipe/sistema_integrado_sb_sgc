@@ -14,6 +14,6 @@
     </head>
     <body>
         <%@include file="header.jsp" %>
-        <h1>Saludos</h1>
+        <h1>Saludos RT</h1>
     </body>
 </html>
