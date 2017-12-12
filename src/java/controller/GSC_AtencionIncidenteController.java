@@ -32,4 +32,15 @@ public class GSC_AtencionIncidenteController {
 
         return "GSC/frm_AtencionIncidente";
     }
+    
+    @RequestMapping(value = "frm_ProgramacionUnidades")  
+    public String mant_programacionUnidades(Model model, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        //List<BeanEstudioPIP> list = estudiopipdao.getEstudiosPIP();
+        //BeanEstudioPIP estudiopip = new BeanEstudioPIP();
+        //model.addAttribute("estudiopip", estudiopip);
+        //model.addAttribute("list", list);        
+
+        return "GSC/frm_ProgramacionUnidades";
+    }
 }
