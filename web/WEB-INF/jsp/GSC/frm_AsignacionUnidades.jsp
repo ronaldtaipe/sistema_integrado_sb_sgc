@@ -18,57 +18,57 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.4.2.js"></script>
         <title>JSP Page</title>
     </head>
-    <body>
         <div class="container">
-            <h1 class="text-center">ASIGNACIÓN UNIDADES</h1>
+            <h3 class="text-center">ASIGNACIÓN UNIDADES</h3>
         </div>
         <div class="container">
             </br>
-            <form>
+            <form:form action="buscarIncidente.html" method="POST" modelAttribute="lstUnidades">
                 <table class="table table-striped">
                     <thead>
                         <tr>
                             <th data-checkbox="true"></th>
                             <th>Nombre</th>
-                            <th>Tipo Unidad</th>
+                            <th>Estado</th>
                             <th>Zona</th>
-                            <th>Contacto</th>
+                            <th>Telefono</th>
                         </tr>
                     </thead>
-                    <tr>
-                        <td><input type="checkbox" name="checkGroup"></td>
-                        <td>Miguel Merino</td>
-                        <td>Motorizado</td>
-                        <td>A2</td>
-                        <td>999999999</td>
+                    <c:forEach var="unidad" items="${lstUnidades}" varStatus="count">
+                    <tr onMouseOver="this.className='highlight'" onMouseOut="this.className='normal'" onclick="getTblContents('${unidad.asignacion_unidad_ID}');">
+                        <td></td>
+                        <td>${unidad.persona.nombre} ${unidad.persona.apellidos}</td>
+                        <td>${unidad.estado}</td>
+                        <td>${unidad.cod_zona}</td>
+                        <td>${unidad.persona.telefono}</td>
                     </tr>
-                    <tr>
-                        <td><input type="checkbox" name="checkGroup"></td>
-                        <td>Ronald Taipe</td>
-                        <td>Auto</td>
-                        <td>A2</td>
-                        <td>999999999</td>
-                    </tr>
+                    </c:forEach>
                 </table>
                 </br>
                 <div class="form-group">
                     <div class="row">
                         <div class="form-group col-md-2">
-                            <input type="button" class="btn btn-primary" onclick="goBack()" value="Guardar">
+                            <input type="button" class="btn btn-primary" data-dismiss="modal" onclick="" value="Guardar">
                         </div>
-                        <div class="form-group col-md-2">
-                            <input type="button" class="btn btn-primary" onclick="goBack()" value="Cancelar">
-                        </div>
+<!--                        <div class="form-group col-md-2">
+                            <input type="button" class="btn btn-primary" data-dismiss="modal" onclick="" value="Cancelar">
+                        </div>-->
                     </div>
                 </div>
             </form>
+            </form:form>
         </div>
         <script>
             function goBack() {
-                window.history.back();
+                window.detach();
+            }
+            
+            function getTblContents(){
+                
             }
         </script>
-    </body>
+
 </html>

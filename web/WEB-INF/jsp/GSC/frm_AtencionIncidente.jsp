@@ -12,9 +12,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
-        <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4hrnVcFR7ZiR-NYj-bJNozqt35aWx0cE&libraries=geometry&callback=initMap">
-        </script>
+        
         <style>
             #map {
              height: 400px;
@@ -41,6 +39,29 @@
         <div class="container">
             <h1 class="text-center">ATENCIÓN DE INCIDENTES</h1>
         </div>
+        
+        <c:if test="${not empty errorINC}">
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert"
+                        aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                </button>
+                <strong>${errorINC}</strong>
+            </div>
+        </c:if>
+
+        <c:if test="${not empty successINC}">
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert"
+                        aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                </button>
+                <strong>${successINC}</strong>
+            </div>
+        </c:if>
+        </br>
+        <form:form action="buscarIncidente.html" method="POST" modelAttribute="busquedaincidente">
+        
         <div class="container">
             </br>
             <table width="100%" class="form-group" >
@@ -49,20 +70,23 @@
                         <table>
                             <tr>
                                 <td>Nro. Teléfonico: </td>
-                                <td><input type="text" class="form-control" /></td>
+                                <td><form:input id="textTelefono" type="text" class="form-control-sm" path="telefono" /></td>
                             </tr>
                             <tr>
                                 <td>Estado: </td>
                                 <td>
-                                    <select class="form-control">
-                                        <option value="-1">---Seleccionar---</option>
-                                    </select>
+                                    <form:select path="estado" class="form-control">
+                                        <option value="0" selected>Seleccionar...</option>
+                                        <option value="1">En Proceso</option>
+                                        <option value="2">Atendido</option>
+                                        <option value="3">Rechazado</option>
+                                    </form:select>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Fecha registro: </td>
                                 <td>
-                                    <input type="date" class="form-control" />
+                                    <form:input type="text" class="form-control-sm" path="fechaStr" placeholder="YYYY-MM-DD" />
                                 </td>
                             </tr>
                             <tr>
@@ -78,9 +102,9 @@
                                     <div class="container">
                                         <div class="row">
                                         <div class="form-group">
-                                            <button type="button" class="btn btn-primary">Buscar</button>
-                                            <button type="button" class="btn btn-primary">Limpiar</button>
-                                            <a href="frm_RegistroIncidente.html"><button type="button" class="btn btn-primary" >Nuevo</button></a>
+                                            <button type="submit" class="btn btn-primary">Buscar</button></a>
+                                            <!--<button onclick="limpiarCampos()" type="button" class="btn btn-primary">Limpiar</button>-->
+                                            <a href="${pageContext.request.contextPath}/frm_RegistroIncidente.html"><button type="button" class="btn btn-primary" >Nuevo</button></a>
                                         </div>
                                         </div>
                                     </div>
@@ -108,21 +132,31 @@
                         <th>Informe</th>
                     </tr>
                 </thead>
-                <tr>
-                    <td>1</td>
-                    <td>02/12/2017</td>
-                    <td>987151754</td>
-                    <td>Mayron Camus Varda</td>
-                    <td>Robo</td>
-                    <td>En proceso</td>
-                    <td><a href=""><img src="images/GSC/view_icon.png" width="30px"></img></a></td>
-                    <td><a href=""><img src="images/GSC/search_document_icon.png" width="30px"></img></a></td>
-                    <td><a href="frm_RegistroIncidente.html"><img src="images/GSC/informe_icon.png" width="30px"></img></a></td>
-                </tr>
+                <c:forEach var="incidente" items="${listIncidente}" varStatus="count">
+                    <tr>
+                        <td>${incidente.cod_incidente}</td>
+                        <td>${incidente.fecha}</td>
+                        <td>${incidente.telefono}</td>
+                        <td>${incidente.nombres} ${incidente.apellidos}</td>
+                        <td>
+                            <c:if test="${incidente.tipo_incidente_ID == '1'}">
+                                Asalto
+                            </c:if>
+                            <c:if test="${incidente.tipo_incidente_ID == '2'}">
+                                Disturbios
+                            </c:if>
+                        </td>
+                        <td>${incidente.estado}</td>
+                        <td><a href=""><img src="${pageContext.request.contextPath}/images/GSC/view_icon.png" width="30px"></img></a></td>
+                        <td><a href=""><img src="${pageContext.request.contextPath}/images/GSC/search_document_icon.png" width="30px"></img></a></td>
+                        <td><a href="${pageContext.request.contextPath}/frm_RegistroIncidente.html?incidente_ID='${incidente.incidente_ID}'"><img src="${pageContext.request.contextPath}/images/GSC/informe_icon.png" width="30px"></img></a></td>
+                    </tr>
+                </c:forEach>
             </table>
         </div>
-        
+        </form:form>
         <script>
+        
             var map;
             var coordenadasIncidente = {lat: -12.096285, lng: -76.993264}; //DENTRO
 //            var coordenadasIncidente = {lat: 29.075375179558346, lng: -75.25634765625}; //FUERA
@@ -247,6 +281,8 @@
 
           }
         
+        </script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4hrnVcFR7ZiR-NYj-bJNozqt35aWx0cE&libraries=geometry&callback=initMap">
         </script>
         
     </body>
