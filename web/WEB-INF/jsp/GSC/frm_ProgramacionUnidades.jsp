@@ -32,6 +32,11 @@
         </script>
         
         <style>
+            
+            body {
+                font: normal 12px Verdana, Arial, sans-serif;
+            }
+
             #map {
              height: 400px;
              width: 100%;
@@ -77,8 +82,26 @@
             #select_unidad_id option{
                 width:150px;   
             }
-
             
+            .title-div{
+                vertical-align: middle;
+                padding: 23px 0px 5px 0px;
+            }
+            
+            .label-div{
+                vertical-align: middle;
+                padding: 15px 0px 5px 10px;
+            }
+            
+            .btn {
+                padding: .375rem 0.5rem !important;
+                font-size: 12px !important;
+                line-height: 1.5 !important;
+            }
+            
+            .btn-primary {
+                background-color: #619fe2 !important;
+            }
             
         </style>
         <title>Atención Incidente</title>
@@ -370,15 +393,15 @@
                 </div>
                 <div class="tab-pane container" id="programacion">
                     PROGRAMACIÓN : <select class="" id="exampleSelect1"> <option>PP20180101</option> </select> <img src="images/GSC/search_document_icon.png" width="30px">
-                    <table width="100%" border="1">
+                    <table width="100%" border="0">
                         <tr>
-                            <td width="65%">
+                            <td width="45%">
                                 <u><strong>NUEVA PROGRAMACIÓN</strong></u>
                                 <br><br>
                                 <div class="side-left">                                    
                                     <label class="radio-inline">Código</label>
                                     <br>
-                                    <input type="text" name="fcodigo" value="PROG-001">
+                                    <input type="text" name="fcodigo" value="PROG-001" size="10">
                                 </div>
                                 <div class="side-right">
                                     <label class="radio-inline">Rango de Fechas</label>
@@ -387,25 +410,261 @@
                                 </div>
                                 <br>
                                 <br>
-                                <div class="side-left">                                
+                                
+                                <div class="title-div">
                                     <u><strong>Disponibles</strong></u>
-                                    <br><br>
-                                    <label>Unidades</label>
-                                    <select class="js-example-basic-multiple" name="states[]" multiple="multiple" id="select_unidad_id">
-                                        <option value="UND01">Unidad01</option>
-                                        <option value="UND02">Unidad02</option>
-                                        <option value="UND03">Unidad03</option>
-                                        <option value="UND04">Unidad04</option>
-                                        <option value="UND05">Unidad05</option>
-                                        <option value="UND06">Unidad06</option>
-                                        <option value="UND07">Unidad07</option>
+                                </div>
+                                <div class="side-right">
+                                    <table class="table table-bordered table-sm m-0">
+                                        <thead class="">
+                                            <tr>
+                                                <th>Unidades</th>
+                                                <th>#</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Canino 001</td>
+                                                <td>
+                                                    <label class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input">
+                                                        <span class="custom-control-indicator"></span>
+                                                    </label>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td>
+                                                    <label class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input">
+                                                        <span class="custom-control-indicator"></span>
+                                                    </label>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                
+                                <div class="side-right">
+                                    <table class="table table-bordered table-sm m-0">
+                                        <thead class="">
+                                            <tr>
+                                                <th>Turnos</th>
+                                                <th>#</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>VE 45BG12</td>
+                                                <td>
+                                                    <label class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input">
+                                                        <span class="custom-control-indicator"></span>
+                                                    </label>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td>
+                                                    <label class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input">
+                                                        <span class="custom-control-indicator"></span>
+                                                    </label>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                
+                                
+                                <div class="side-right">
+                                    <table class="table table-bordered table-sm m-0">
+                                        <thead class="">
+                                            <tr>
+                                                <th>Zonas</th>
+                                                <th>#</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Unidad 10</td>
+                                                <td>
+                                                    <label class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input">
+                                                        <span class="custom-control-indicator"></span>
+                                                    </label>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td>
+                                                    <label class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input">
+                                                        <span class="custom-control-indicator"></span>
+                                                    </label>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                
+                            </td>
+                            <td width="55%">
+                                <u><strong>LIBERAR ASIGNACIÓN</strong></u>
+                                <div class="title-div">
+                                    <u><strong>Liberar por: </strong></u>
+                                </div>
+                                
+                                
+                                <div class="label-div">
+                                    <label>Fecha: </label>
+                                    <input id="date" type="date">&nbsp;<input id="date" type="date">
+                                </div>                                
+                                <div class="label-div">
+                                    <label>Turno: </label>
+                                    <select class="" id="exampleSelect1">
+                                        <option>Todos</option>
+                                    </select>
+                                </div>                                
+                                <div class="label-div">
+                                    <label>Unidad: </label>
+                                    <select class="" id="exampleSelect1">
+                                        <option>Unidad 1</option>
                                     </select>
                                 </div>
-                            </td>
-                            <td width="35%">
-                                <u><strong>LIBERAR ASIGNACIÓN</strong></u>
+                                <div class="label-div">
+                                    <label>Zona: </label>
+                                    <select class="" id="exampleSelect1">
+                                        <option>ZSB02</option>
+                                    </select>
+                                </div>
+                                
                             </td>
                         </tr>
+                        
+                        <tr>
+                            <td align="center" colspan="2">
+                                <button type="button" class="btn btn-primary">Programar</button>
+                                <button type="button" class="btn btn-primary">Liberar</button>
+                            </td>
+                        </tr>
+                        
+                                
+                        <tr>
+                            <td colspan="2">
+                                <u><strong>PROGRAMACIÓN DETALLE</strong></u>
+                                <br><br>
+                                <table class="table table-bordered table-sm m-0">
+                                    <thead class="">
+                                        <tr>
+                                            <th>Unidad</th>
+                                            <th>Tipo Unidad</th>
+                                            <th>Fecha Desde</th>
+                                            <th>Fecha Hasta</th>
+                                            <th>Turno</th>
+                                            <th>Zona</th>
+                                            <th>Detalle</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Unidad 1</td>
+                                            <td>Serenazgo</td>
+                                            <td>01/01/2018</td>
+                                            <td>01/01/2018</td>
+                                            <td>Día</td>
+                                            <td>ZSB01</td>
+                                            <td><button type="button" class="btn btn-primary">Ver</button> <img src="images/GSC/view_icon.png" width="30px"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Unidad 2</td>
+                                            <td>Serenazgo</td>
+                                            <td>01/01/2018</td>
+                                            <td>01/01/2018</td>
+                                            <td>Noche</td>
+                                            <td>ZSB02</td>
+                                            <td><button type="button" class="btn btn-primary">Ver</button> <img src="images/GSC/view_icon.png" width="30px"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Unidad 3</td>
+                                            <td>Serenazgo</td>
+                                            <td>01/01/2018</td>
+                                            <td>01/01/2018</td>
+                                            <td>Madrugada</td>
+                                            <td>ZSB03</td>
+                                            <td><button type="button" class="btn btn-primary">Ver</button> <img src="images/GSC/view_icon.png" width="30px"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>    
+                        <tr>
+                            <td width="40%">
+                                <br>
+                                <table class="table table-bordered table-sm m-0">
+                                    <thead class="">
+                                        <tr>
+                                            <th>Unidad</th>
+                                            <th>Código Recurso</th>
+                                            <th>Tipo Recurso</th>
+                                            <th>Nombre Recurso</th>
+                                            <th>Detalle</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Unidad 1</td>
+                                            <td>R0001</td>
+                                            <td>Persona</td>
+                                            <td>Juan Perez</td>
+                                            <td><button type="button" class="btn btn-primary">Ver</button> <img src="images/GSC/view_icon.png" width="30px"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Unidad 1</td>
+                                            <td>R0002</td>
+                                            <td>Canino</td>
+                                            <td>Negro</td>
+                                            <td><button type="button" class="btn btn-primary">Ver</button> <img src="images/GSC/view_icon.png" width="30px"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td width="40%">
+                                <br>
+                                <table class="table table-bordered table-sm m-0">
+                                    <thead class="">
+                                        <tr>
+                                            <th>Nombres y Apellidos</th>
+                                            <th>Dirección</th>
+                                            <th>Teléfono</th>
+                                            <th>Fecha Nacimiento</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>                            
+                        </tr>
+                        <tr>
+                            <td align="center" colspan="2">
+                                <br>
+                                <button type="button" class="btn btn-primary">Grabar Programación</button>
+                                <button type="button" class="btn btn-default">Aprobar Progamación</button>
+                                <button type="button" class="btn btn-default">Anular Progamación</button>
+                            </td>
+                        </tr>                        
                     </table>
                 </div>
             </div>
